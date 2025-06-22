@@ -4,8 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Carousel = ({ additionalImages }) => {
-  console.log("additionalImages link are", additionalImages);
-  var settings = {
+  const settings = {
     dots: true,
     arrows: true,
     infinite: true,
@@ -15,19 +14,17 @@ const Carousel = ({ additionalImages }) => {
   };
 
   return (
-    <div className=" h-[340px] flex flex-col w-[350px] justify-center mx-auto relative z-10">
+    <div className="w-full max-w-xs sm:max-w-md mx-auto">
       <Slider {...settings}>
-        {additionalImages.map((pic, index) => {
-          return (
-            <div key={index}>
-              <img
-                src={pic}
-                alt="image"
-                className="h-[300px] w-[250px] mx-auto object-cover rounded-md border-none outline-none"
-              />
-            </div>
-          );
-        })}
+        {additionalImages.map((pic, index) => (
+          <div key={index} className="flex justify-center">
+            <img
+              src={pic}
+              alt={`Slide ${index}`}
+              className="h-[220px] sm:h-[300px] w-full object-contain rounded-lg"
+            />
+          </div>
+        ))}
       </Slider>
     </div>
   );

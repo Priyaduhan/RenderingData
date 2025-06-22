@@ -14,23 +14,25 @@ const ViewItem = ({ datas, newItem }) => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <div className="flex flex-wrap justify-center p-6 gap-4">
-        {datas.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => handleDialogBox(item, index)}
-            className="cursor-pointer bg-white border border-gray-300 rounded-md shadow-md hover:shadow-lg transition duration-200 p-3 w-[180px] flex flex-col items-center"
-          >
-            <img
-              src={item.image}
-              alt="some image"
-              className="h-[150px] w-[150px] object-cover rounded-md"
-            />
-            <p className="mt-2 font-medium text-gray-700 text-center">
-              {item.ItemName}
-            </p>
-          </div>
-        ))}
+      <div className="p-4 sm:p-6 lg:p-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+          {datas.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => handleDialogBox(item, index)}
+              className="cursor-pointer bg-white border border-gray-300 rounded-xl shadow-md hover:shadow-xl transition duration-200 p-4 w-[90%] sm:w-[180px] flex flex-col items-center"
+            >
+              <img
+                src={item.image}
+                alt="item"
+                className="h-[150px] w-[150px] object-cover rounded-md"
+              />
+              <p className="mt-2 font-medium text-gray-700 text-center text-sm sm:text-base">
+                {item.ItemName}
+              </p>
+            </div>
+          ))}
+        </div>
 
         {openDialog && (
           <Modal
