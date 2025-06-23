@@ -126,9 +126,8 @@ const AddItem = ({ datas, setDatas }) => {
                 {...register("image", {
                   required: "Cover image is required",
                   pattern: {
-                    value: /\.(jpeg|jpg|gif|png|webp)$/i,
-                    message:
-                      "Enter a valid image URL ending in .jpg/.png/.gif/etc.",
+                    value: /^https?:\/\/.*/i,
+                    message: "Image URL must start with http or https",
                   },
                 })}
                 type="text"
@@ -152,12 +151,11 @@ const AddItem = ({ datas, setDatas }) => {
                     const urls = value.split(",").map((url) => url.trim());
                     const isMinimum = urls.length >= 3;
                     const isValid = urls.every((url) =>
-                      /\.(jpeg|jpg|gif|png|webp)$/i.test(url)
+                      /^https?:\/\/.*/i.test(url)
                     );
-                    if (!isMinimum)
-                      return "Please enter at least 3 image URLs";
+                    if (!isMinimum) return "Please enter at least 3 image URLs";
                     if (!isValid)
-                      return "All URLs must end with .jpg/.png/.gif etc.";
+                      return "All URLs must start with http or https";
                     return true;
                   },
                 })}
